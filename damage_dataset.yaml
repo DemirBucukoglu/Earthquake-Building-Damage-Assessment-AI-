@@ -1,0 +1,8 @@
+train: C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\train
+val: C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\val
+
+nc: 2
+names: ['damaged', 'undamaged']
+
+
+# python train.py --img 640 --batch 16 --epochs 50 --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" --weights yolov5s.pt --name damage_experiment
