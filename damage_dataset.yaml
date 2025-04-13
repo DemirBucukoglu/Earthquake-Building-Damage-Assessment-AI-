@@ -1,8 +1,31 @@
-train: C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\train
-val: C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\val
+# damage_dataset.yaml  – combined dataset
+# --------------------------------------------------------------
+# train set = original roof‑crops  +  synthetic 1024×1024 scenes
+# val   set = original validation split (same as before)
+# --------------------------------------------------------------
+
+train:
+  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\train'
+  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images'
+
+val: 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\val'
+
 
 nc: 2
-names: ['damaged', 'undamaged']
+names: [damaged, undamaged]
 
+# (optional) class‑balancing weights
+# weights: [2.0, 1.0]   # give “damaged” extra weight if it is rarer
 
 # python train.py --img 640 --batch 16 --epochs 50 --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" --weights yolov5s.pt --name damage_experiment
+
+# NEW TRAIN 
+# python train.py `
+#   --img 640 `
+#   --batch 16 `
+#   --epochs 120 `
+#   --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" `
+#   --weights "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\yolov5\runs\train\damage_experiment2\weights\best.pt" `
+#   --multi-scale `
+#   --hyp data\hyps\hyp.scratch-low.yaml `
+#   --name damage_synth
