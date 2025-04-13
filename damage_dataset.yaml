@@ -1,7 +1,7 @@
-# damage_dataset.yaml  – combined dataset
+# damage_dataset.yaml – combined dataset
 # --------------------------------------------------------------
-# train set = original roof‑crops  +  synthetic 1024×1024 scenes
-# val   set = original validation split (same as before)
+# train set = original roof‑crops + synthetic 1024×1024 scenes
+# val set   = original validation split (same as before)
 # --------------------------------------------------------------
 
 train:
@@ -10,9 +10,11 @@ train:
 
 val: 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\val'
 
-
 nc: 2
 names: [damaged, undamaged]
+
+
+# (optional) class‑balancing weights can be added here if needed
 
 # (optional) class‑balancing weights
 # weights: [2.0, 1.0]   # give “damaged” extra weight if it is rarer
