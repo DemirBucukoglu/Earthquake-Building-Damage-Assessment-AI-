@@ -8,7 +8,6 @@
 # # --- Input and Output Directories ---
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 # # Input directories for damaged and undamaged building images.
 # damaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Damaged Building"
 # undamaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Undamaged Building"
@@ -58,8 +57,6 @@
 #         mosaic_img = np.zeros((mosaic_height, mosaic_width, 3), dtype=np.uint8)
 
 =======
-=======
->>>>>>> Stashed changes
 <<<<<<< HEAD
 damaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Damaged Building"
 undamaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Undamaged Building"
@@ -117,9 +114,6 @@ if not os.path.exists(output_dir):
 #         mosaic_height = n_rows * patch_h
 #         mosaic_img = np.zeros((mosaic_height, mosaic_width, 3), dtype=np.uint8)
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 #         bboxes = []
 #         labels = []
@@ -172,13 +166,10 @@ if not os.path.exists(output_dir):
 #             ])
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 # print("Mosaic creation and CSV annotations generation complete!")
 import torch
 print(torch.cuda.is_available())
 =======
-=======
->>>>>>> Stashed changes
 <<<<<<< HEAD
             writer.writerow([
                 mosaic_filename,  
@@ -200,7 +191,4 @@ print("Mosaic creation and CSV annotations generation complete!")
 import torch
 print(torch.cuda.is_available())
 >>>>>>> 05c2d7c2ce2e2d3496d52dab2471e5bc15121f12
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
