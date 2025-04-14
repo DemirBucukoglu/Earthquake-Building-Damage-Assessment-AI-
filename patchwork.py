@@ -7,7 +7,6 @@
 
 # # --- Input and Output Directories ---
 
-<<<<<<< Updated upstream
 # # Input directories for damaged and undamaged building images.
 # damaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Damaged Building"
 # undamaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Undamaged Building"
@@ -56,65 +55,6 @@
 #         mosaic_height = n_rows * patch_h
 #         mosaic_img = np.zeros((mosaic_height, mosaic_width, 3), dtype=np.uint8)
 
-=======
-<<<<<<< HEAD
-damaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Damaged Building"
-undamaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Undamaged Building"
-
-output_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork"
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-=======
-# # Input directories for damaged and undamaged building images.
-# damaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Damaged Building"
-# undamaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Undamaged Building"
-
-# # Output directory to save mosaic images.
-# output_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork"
-# if not os.path.exists(output_dir):
-#     os.makedirs(output_dir)
->>>>>>> 05c2d7c2ce2e2d3496d52dab2471e5bc15121f12
-
-# csv_path = os.path.join(output_dir, "mosaic_annotations.csv")
-
-# allowed_extensions = ('.jpg', '.jpeg', '.png')
-# patch_w, patch_h = 224, 224    
-# group_size = 10  # number of patches per mosaic                
-# n_cols = 5       # fixed number of columns in each mosaic
-
-# # Gather image paths and labels from both directories.
-# damaged_images = [os.path.join(damaged_dir, f) for f in os.listdir(damaged_dir)
-#                   if f.lower().endswith(allowed_extensions)]
-# undamaged_images = [os.path.join(undamaged_dir, f) for f in os.listdir(undamaged_dir)
-#                     if f.lower().endswith(allowed_extensions)]
-
-# # Create a combined list with label information.
-# data = []
-# for img_path in damaged_images:
-#     data.append((img_path, "damaged"))
-# for img_path in undamaged_images:
-#     data.append((img_path, "undamaged"))
-
-# # Set the number of mosaics to generate.
-# num_mosaics = 500
-# print("Total number of mosaics to be created:", num_mosaics)
-
-# with open(csv_path, mode='w', newline='') as csv_file:
-#     writer = csv.writer(csv_file)
-#     writer.writerow(["filename", "width", "height", "class", "xmin", "ymin", "xmax", "ymax"])
-
-#     for mosaic_index in range(num_mosaics):
-#         # Randomly select group_size images for this mosaic.
-#         # Using random.choices allows repeated images; if you prefer no repetitions and have enough images, consider using random.sample.
-#         group_data = random.choices(data, k=group_size)
-#         n_images = len(group_data)
-#         n_rows = math.ceil(n_images / n_cols)
-
-#         mosaic_width = n_cols * patch_w
-#         mosaic_height = n_rows * patch_h
-#         mosaic_img = np.zeros((mosaic_height, mosaic_width, 3), dtype=np.uint8)
-
->>>>>>> Stashed changes
 #         bboxes = []
 #         labels = []
         
@@ -165,30 +105,6 @@ if not os.path.exists(output_dir):
 #                 y2                # ymax
 #             ])
 
-<<<<<<< Updated upstream
 # print("Mosaic creation and CSV annotations generation complete!")
 import torch
 print(torch.cuda.is_available())
-=======
-<<<<<<< HEAD
-            writer.writerow([
-                mosaic_filename,  
-                mosaic_width,     
-                mosaic_height,    
-                label,            
-                x1,               
-                y1,               
-                x2,               
-                y2                
-            ])
-
-print("Mosaic creation and CSV annotations generation complete!")
-
-# https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
-# make random images from patchwork
-=======
-# print("Mosaic creation and CSV annotations generation complete!")
-import torch
-print(torch.cuda.is_available())
->>>>>>> 05c2d7c2ce2e2d3496d52dab2471e5bc15121f12
->>>>>>> Stashed changes
