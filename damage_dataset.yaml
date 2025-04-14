@@ -30,3 +30,16 @@ names: [damaged, undamaged]
 
 # TEST
 # python detect.py --weights runs/train/damage_synth2/weights/best.pt --source testimg.png --img 640 --conf 0.05 --iou 0.45 --save-txt --save-conf
+
+
+# FINETUNE
+# python train.py `
+#   --img 640 `
+#   --batch 16 `
+#   --epochs 120 `
+#   --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" `
+#   --weights "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\yolov5\runs\train\damage_experiment2\weights\best.pt" `
+#   --multi-scale `
+#   --hyp data\hyps\hyp.scratch-low.yaml `
+#   --name damage_synth_finetune `
+#   --device 0
