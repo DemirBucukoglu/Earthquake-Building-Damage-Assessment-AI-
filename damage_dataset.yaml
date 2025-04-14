@@ -29,7 +29,7 @@ names: [damaged, undamaged]
 #   --device 0
 
 # TEST
-# python detect.py --weights runs/train/damage_synth2/weights/best.pt --source testimg.png --img 640 --conf 0.05 --iou 0.45 --save-txt --save-conf
+# python detect.py --weights runs/train/damage_synth2/weights/best.pt --source testimages/testimg.png --img 640 --conf 0.05 --iou 0.45 --save-txt --save-conf
 
 
 # FINETUNE
