@@ -63,5 +63,5 @@ names: [damaged, undamaged]
 # names: [damaged, undamaged]
 
 
-# latest training
-# python train.py --img 640 --batch 16 --epochs 120 --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" --weights "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\yolov5\runs\train\damage_experiment2\weights\best.pt" --multi-scale --augment --hyp data\hyps\hyp.scratch-low.yaml --lr 0.01 --cos-lr --name patchwork3.0 --device 0
+# latest training run w this tn
+# python train.py --imgsz 640 --batch-size 8 --epochs 120 --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" --project runs\train --name patchwork3.0 --exist-ok --device 0 --workers 2 --cache
