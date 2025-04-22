@@ -1,8 +1,8 @@
 train:
-  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images\train'
+  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork3.0\images\train'
 
 val:
-  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images\val'
+  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork3.0\images\val'
 
 nc: 2
 names: [damaged, undamaged]
@@ -61,3 +61,7 @@ names: [damaged, undamaged]
 
 # nc: 2
 # names: [damaged, undamaged]
+
+
+# latest training
+# python train.py --img 640 --batch 16 --epochs 120 --data "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\damage_dataset.yaml" --weights "C:\Users\demir\OneDrive\Belgeler\GitHub\Earthquake_AI\yolov5\runs\train\damage_experiment2\weights\best.pt" --multi-scale --augment --hyp data\hyps\hyp.scratch-low.yaml --lr 0.01 --cos-lr --name patchwork3.0 --device 0
