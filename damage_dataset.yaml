@@ -1,9 +1,7 @@
 train:
-  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\train'
   - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images\train'
 
 val:
-  - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\val'
   - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images\val'
 
 nc: 2
@@ -51,3 +49,15 @@ names: [damaged, undamaged]
 #methods diagram
 #conclusion 
 #results or demo
+
+
+# train:
+#   - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\train'
+#   - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images\train'
+
+# val:
+#   - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork\patchwork_yolo\images\val'
+#   - 'C:\Users\demir\OneDrive\Belgeler\CS CLUB\pathcwork2.0\images\val'
+
+# nc: 2
+# names: [damaged, undamaged]
