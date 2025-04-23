@@ -5,13 +5,11 @@ import random
 import math
 import csv
 
-# --- Input and Output Directories ---
 
-# Input directories for damaged and undamaged building images.
 damaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Damaged Building"
 undamaged_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\archive\Earthquake\Undamaged Building"
 
-# Output directory to save mosaic images.
+
 output_dir = r"C:\Users\demir\OneDrive\Belgeler\CS CLUB\patchwork"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
@@ -23,13 +21,12 @@ patch_w, patch_h = 224, 224
 group_size = 10  # number of patches per mosaic                
 n_cols = 5       # fixed number of columns in each mosaic
 
-# Gather image paths and labels from both directories.
+
 damaged_images = [os.path.join(damaged_dir, f) for f in os.listdir(damaged_dir)
                   if f.lower().endswith(allowed_extensions)]
 undamaged_images = [os.path.join(undamaged_dir, f) for f in os.listdir(undamaged_dir)
                     if f.lower().endswith(allowed_extensions)]
 
-# Create a combined list with label information.
 data = []
 for img_path in damaged_images:
     data.append((img_path, "damaged"))
@@ -45,8 +42,7 @@ with open(csv_path, mode='w', newline='') as csv_file:
     writer.writerow(["filename", "width", "height", "class", "xmin", "ymin", "xmax", "ymax"])
 
     for mosaic_index in range(num_mosaics):
-        # Randomly select group_size images for this mosaic.
-        # Using random.choices allows repeated images; if you prefer no repetitions and have enough images, consider using random.sample.
+        
         group_data = random.choices(data, k=group_size)
         n_images = len(group_data)
         n_rows = math.ceil(n_images / n_cols)

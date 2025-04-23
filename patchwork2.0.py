@@ -63,7 +63,7 @@ for idx in range(args.n):
         scale = random.uniform(0.30, 0.60)
         crop  = cv2.resize(crop, None, fx=scale, fy=scale,
                            interpolation=cv2.INTER_AREA)
-        if random.random() < 0.3:                          # 30 % rotate 0/90/180/270
+        if random.random() < 0.3:                         
             rot = random.choice([cv2.ROTATE_90_CLOCKWISE,
                                  cv2.ROTATE_180,
                                  cv2.ROTATE_90_COUNTERCLOCKWISE])
