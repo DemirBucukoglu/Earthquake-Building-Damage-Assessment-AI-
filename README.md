@@ -27,6 +27,8 @@ Limited diversity (only ~10 unique crops) led to overfitting and poor generaliza
 Patchwork 2.0 (Improved Augmentation)
 Pasted building crops (damaged and undamaged) at random positions, scales, and rotations onto a plain black background.
 
+<p align="center"> <img src="Results/pathcwork3.0.jpg" alt="Synthetic Training Image" width="600"/> <br/> <em>Figure 1: Example synthetic training image from Patchwork 2.0.</em> </p>
+
 Generated ~2,500 synthetic images with corresponding YOLO-format annotations.
 
 Re-trained YOLOv5 on this dataset, resulting in substantially improved detection and classification performance on real aerial imagery.
@@ -93,8 +95,7 @@ python yolov5/detect.py \
     --weights runs/train/damage_yolov5/weights/best.pt \
     --source examples/earthquake_area.jpg \
     --conf 0.25 --output runs/inference/
-Results
-<p align="center"> <img src="Results/pathcwork3.0.jpg" alt="Synthetic Training Image" width="600"/> <br/> <em>Figure 1: Example synthetic training image from Patchwork 2.0.</em> </p> <p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Model detecting damaged buildings in a real aerial image (blue boxes).</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing undamaged (teal) vs. damaged (blue) structures.</em> </p> 
+Results <p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Model detecting damaged buildings in a real aerial image (blue boxes).</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing undamaged (teal) vs. damaged (blue) structures.</em> </p> 
 
 Challenges and Learnings
 Data Scarcity: Only one freely available dataset necessitated synthetic augmentation.
