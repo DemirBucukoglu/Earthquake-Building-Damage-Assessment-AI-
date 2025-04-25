@@ -1,54 +1,110 @@
-Building Damage Assessment AI
-Author: Demir Bucukoglu
-Description
-This project is an AI-based system for rapid building damage assessment after earthquakes. It automatically identifies buildings in aerial or satellite images and classifies each as damaged or undamaged. The goal is to assist in disaster response by quickly analyzing large areas and highlighting which structures are destroyed versus intact. This was the developer’s first AI project, transitioning from web and game development to applying AI for a real-world problem. The outcome is an object detection model that can help authorities evaluate earthquake impact more efficiently by tagging buildings with their damage status.
-Methods
-The solution combines image classification and object detection techniques to tackle the problem in stages:
-ResNet-50 Image Classification: The project began with training a ResNet-50 convolutional neural network to distinguish damaged building images from undamaged ones. ResNet-50 is a deep learning model pre-trained on ImageNet; by fine-tuning it on a curated dataset of about 2,600 labeled building photos, the model learned to classify a single building image as “damaged” or “undamaged.” This transfer learning approach achieved high accuracy in identifying damage on individual building images, confirming that the visual differences (like collapsed roofs or debris) can be effectively recognized by a CNN.
-YOLOv5 Object Detection: Building on the classification success, the project next adopted YOLOv5 (You Only Look Once v5) for object detection. YOLOv5 is a state-of-the-art real-time object detector that can locate multiple objects in an image and assign them categories. In this context, YOLOv5 was trained to detect multiple buildings in a large scene and classify each as damaged or undamaged. Because real post-earthquake aerial images with per-building labels are scarce, a creative data augmentation strategy was used: Patchwork image generation. This involved taking the smaller images of individual buildings (from the classification dataset) and pasting them into larger collage scenes for YOLOv5 to train on.
-Patchwork 1.0: An initial script arranged 10 building images (patches) into a fixed grid (a “mosaic”) on a blank background. While this taught YOLOv5 to detect the patches, it had a limitation – using a small set of building crops repeatedly led to overfitting. The model memorized those specific buildings and didn’t generalize well to new images, because Patchwork 1.0 only exposed it to ~10 unique building appearances and fixed positions.
-Patchwork 2.0: To address this, the method was improved to generate more diverse and realistic training images. A second script randomly placed between 5 and 15 building crops onto a 1024×1024 black canvas, at random positions and scales (and even random rotations). This synthetic scene generation produced 2,500 varied training images, each simulating an overhead view of a disaster area with multiple buildings. No two scenes were the same – buildings appeared at different sizes and locations, mimicking real aerial shots. YOLOv5 was retrained on this richer dataset. As a result, the detector learned to locate any building in an image (not just at fixed grid spots) and classify it correctly as damaged vs. undamaged. The improved model now successfully (most of the time) identifies buildings and their damage status in new, unseen earthquake images.
+## **Building Damage Assessment AI**
+
+
+#  *Project Overview*
+Author: Demir Bucukoglu (Cohort: James Tribble)
+Objective: Automate post-earthquake building damage assessment using aerial imagery.
+Stages:
+
+Stage 1: Image classification with ResNet-50 to label individual buildings as damaged or undamaged.
+
+Stage 2: Object detection with YOLOv5 to locate multiple buildings within large scenes and classify their damage status.
+
+Use Case: Accelerate disaster response by pinpointing hard-hit areas from satellite/drone imagery.
+
+# *Methodology*
+Stage 1: Image Classification (ResNet-50)
+The project began by fine-tuning a pre-trained ResNet-50 CNN on a dataset of ~2,600 labeled building images (1,237 damaged, 1,498 undamaged) sourced from the Turkey Earthquake 2023 Kaggle dataset. Transfer learning allowed the model to achieve high accuracy quickly, confirming that damage can be recognized when images are cropped to single buildings. However, classification alone does not generalize to large scenes containing multiple structures.
+
+Stage 2: Object Detection with YOLOv5
+To detect and classify multiple buildings within aerial scenes, we adopted YOLOv5 for its speed and accuracy.
+
+Patchwork 1.0 (Synthetic Data Generation)
+Cropped building images from the classification dataset and pasted them onto various background scenes to create composite images.
+
+Limited diversity (only ~10 unique crops) led to overfitting and poor generalization.
+
+Patchwork 2.0 (Improved Augmentation)
+Pasted building crops (damaged and undamaged) at random positions, scales, and rotations onto a plain black background.
+
+<p align="center"> <img src="Results/pathcwork3.0.jpg" alt="Synthetic Training Image" width="600"/> <br/> <em>Figure 1: Example synthetic training image from Patchwork 2.0.</em> </p>
+
+Generated ~2,500 synthetic images with corresponding YOLO-format annotations.
+
+Re-trained YOLOv5 on this dataset, resulting in substantially improved detection and classification performance on real aerial imagery.
+
+# *Pipeline Summary*
+Detection: Run YOLOv5 on large images to locate buildings.
+
+Classification: Label each bounding box as “damaged” or “undamaged.”
+
+This end-to-end pipeline achieves automated building damage assessment in complex scenes.
+
 Installation
-To set up this project, you will need the following installed on your system:
-Python 3.x – The code is written in Python and was tested on Python 3.8+.
-Deep Learning Frameworks: Both TensorFlow/Keras (for the ResNet-50 classification) and PyTorch (for the YOLOv5 detection) are used. You should install TensorFlow (if you plan to retrain or run the classification model) and PyTorch (for running YOLOv5).
-YOLOv5 Repository: The object detection part uses the Ultralytics YOLOv5 implementation. You can obtain this by cloning the YOLOv5 GitHub repository or installing the ultralytics package via pip. Ensure that you have the YOLOv5 dependencies (OpenCV, PyTorch, etc.) set up as per the YOLOv5 documentation.
-OpenCV & NumPy: Required for the data preparation scripts (to read, resize, and paste images). Install OpenCV (opencv-python package) and NumPy.
-Pandas (optional): Useful if you work with the annotations CSV or need to manipulate datasets.
-Setup: After installing the libraries, download the building images dataset from Kaggle (see Dataset Source below) and adjust the file paths in the scripts if necessary. The code repository includes Python scripts (patchwork2.0.py, etc.) and a Jupyter notebook (Earthquake.ipynb). Make sure the directory structure for the dataset matches what the scripts expect (for example, having subfolders for “Damaged Building” and “Undamaged Building” images if required).
+Clone the Repository
+
+bash
+Copy
+Edit
+git clone https://github.com/DemirBucukoglu/Earthquake-Building-Damage-Assessment-AI.git
+cd Earthquake-Building-Damage-Assessment-AI
+Set Up Python Environment
+
+bash
+Copy
+Edit
+conda create -n damage-ai-env python=3.8 -y
+conda activate damage-ai-env
+pip install -r requirements.txt
+YOLOv5 Dependencies
+
+bash
+Copy
+Edit
+cd yolov5
+pip install -r requirements.txt
+cd ..
+Prepare Data
+
+Classification: Place images in data/classification/damaged/ and data/classification/undamaged/.
+
+Object Detection: Use provided synthetic data in data/patchwork/ or generate your own via patchwork.py and patchwork2.0.py.
+
 Usage
-Follow these steps to run the project or reproduce the results:
-Prepare the Dataset: First, obtain the Kaggle dataset of earthquake-damaged building images and extract it. You should have a set of images categorized by damage vs. no damage. Update the paths in the code (if needed) to point to the directories containing these images. For example, the patchwork generation scripts expect Damaged Building and Undamaged Building folders containing the respective JPEG images.
-Generate Synthetic Training Images: Run the patchwork2.0.py script to create the synthetic “patchwork” scenes. By default, this will generate 2,500 composite images (1024×1024 pixels each) and corresponding YOLO annotation text files. Each composite image will contain multiple building instances. This step augments the training data and prepares a custom dataset for the object detector. (The older patchwork.py script (Patchwork 1.0) can also create grid mosaics and a CSV of annotations, but Patchwork 2.0 is recommended for better results.)
-Train the YOLOv5 Model: With the synthetic dataset ready, train YOLOv5 to detect and classify building damage. If you’re using the YOLOv5 repository, you can place the generated images and labels in the YOLOv5 datasets format (the datamake.py script can help convert the CSV to YOLO format if using Patchwork 1.0). Then run YOLOv5’s training command, for example:
+Training the ResNet-50 Classifier
 bash
 Copy
 Edit
-python train.py --img 1024 --batch 8 --epochs 50 --data damage_dataset.yaml --weights yolov5s.pt
-Here, damage_dataset.yaml is a config file describing the dataset (classes: damaged vs undamaged, and paths to train/val data), and yolov5s.pt is a pre-trained YOLOv5 weights file to fine-tune from. Training will output a trained model (weights) after the specified epochs. (Note: Training on 1024px images is computationally intensive; having a GPU is highly recommended. The developer reported that training ~1,250 images took over 5 hours on an NVIDIA RTX 2070.)
-Evaluate and Test: After training, you can test the model on new images. Use YOLOv5’s detection script or the included notebook to run inference. For example, YOLOv5’s detect command might be:
+# (Optional) Train from scratch
+jupyter notebook Earthquake.ipynb
+
+# Or run a script:
+python classification/train_classifier.py --data data/classification --output models/
+Training YOLOv5 Damage Detector
 bash
 Copy
 Edit
-python detect.py --weights runs/train/exp/weights/best.pt --source path/to/test_image.jpg --img 1024 --conf 0.25
-This will output images (to runs/detect) with bounding boxes drawn around detected buildings, labeled “damaged” or “undamaged” with confidence scores. The repository’s Test_Results folder contains sample output images (testimg.png etc.) from various experiment runs, which you can examine to see how the model performs.
-Image Classification (Optional): The project also includes a Jupyter Notebook (Earthquake.ipynb) that was used to train and evaluate the ResNet-50 classification model. You can open this notebook to see how the classifier was implemented. To try it out, you would need to have the dataset prepared and TensorFlow installed. Running the notebook will train a model to classify individual building images and output accuracy/loss metrics. This step is optional if you are primarily interested in the object detection results, but it provides insight into a simpler classification approach.
-Dataset Source
-The primary dataset used for this project comes from Kaggle, consisting of real aerial images of buildings from an earthquake (specifically the 2023 Turkey earthquake). It includes approximately 2,735 images of individual buildings, of which about 1,237 are labeled as damaged and 1,498 as undamaged​
-kaggle.com
-. These images served as the ground truth data for training the classification model and as the building “crops” for generating synthetic scenes. The Kaggle dataset provided the necessary examples of what damaged buildings look like (e.g. collapsed roofs, debris around) versus intact structures. Because additional annotated data of whole scenes was not readily available, the project created its own dataset of composite images via the Patchwork approach. In those synthetic images, multiple Kaggle building photos are stitched together in a larger frame. The model training thus relied on a mix of real data (single-building photos) and generated data (multi-building scenes). All data used was free and publicly available or created specifically for this project. (Note: Other earthquake damage datasets exist but are either behind paywalls or difficult to access quickly, so this Kaggle set was crucial for the project.)
-Challenges and Discoveries
-Working on this project presented several challenges and learning opportunities:
-Scarce Data & Creative Augmentation: Finding data for this specific task was difficult – there was only one readily available public dataset of earthquake-damaged buildings. To train an object detector, which normally requires images with many objects and annotations, the project had to get creative. The Patchwork data generation was a direct answer to this scarcity, allowing the synthesis of training images to supplement the real data. This was a key discovery: sometimes you must create your own data to push a project forward.
-Overfitting Issues: The initial version of the object detector training (Patchwork 1.0 with fixed-grid mosaics) led to the model overfitting. The YOLOv5 model essentially memorized the small set of building images it saw repeatedly during training and failed to generalize to new buildings or layouts. This highlighted the importance of having diverse training examples. The team learned to recognize overfitting from model behavior and went back to improve the dataset. By increasing variety in Patchwork 2.0 (random placement, more source images), the model’s performance on new images improved significantly – a valuable lesson in dataset diversity.
-Computational Challenges: Training deep learning models on high-resolution imagery is computationally intensive. Even with GPU acceleration, processing large images in YOLOv5 took a long time. For example, one training run on roughly 1,250 images (after an initial filtering/splitting) took over 5 hours on an RTX 2070 GPU. This taught the importance of optimizing training (using appropriate batch sizes, image sizes, and possibly techniques like mixed precision or checkpointing) and being patient and strategic with experiment runs.
-Labeling and Workflow: Through this project, the developer gained a deeper understanding of the end-to-end AI workflow, including data labeling and preparation. Writing scripts to convert between annotation formats (from a CSV of coordinates to YOLO text files), and ensuring consistency between images and labels, was a significant effort. This experience strengthened skills in data preprocessing and augmentation. Additionally, working with YOLOv5 gave insight into how object detection models are trained, how to fine-tune pre-trained models, and how to interpret their output.
-Real-World Impact and Limitations: A notable discovery was that, despite using synthetic data, the trained model could indeed pick out damaged buildings in actual post-disaster images (as shown in the results). This is encouraging for real-world applications. However, the project also highlighted limitations: the model’s accuracy isn’t perfect (“most of the time” it is correct, but it can miss some buildings or misclassify some damage states). In practice, such a tool would be a helpful aid but likely would need further improvement and validation on real deployment data.
-Results
-(This section will be updated with detailed results, charts, and evaluation metrics.) So far, the ResNet-50 classifier achieved a high accuracy in distinguishing damaged vs. undamaged building images (indicating the features learned are relevant to structural damage). The YOLOv5 detector (after retraining with the improved Patchwork 2.0 data) was able to successfully locate multiple buildings in a scene and correctly label most of them. During testing on new earthquake images, the model demonstrated the ability to identify collapsed buildings with reasonable confidence. We will include performance graphs (such as training loss/accuracy curves and precision-recall metrics) and example outputs in this section to illustrate the model’s performance. Below, you can already see some sample images of the project’s outputs and data. These give a visual sense of what the AI was trained on and how it performs: the first image is a synthetic training scene used for learning, and the second image is an actual inference result from the trained model.
-Image Samples
+python yolov5/train.py --img 640 --batch 16 --epochs 100 \
+    --data data/damage_dataset.yaml --weights yolov5s.pt \
+    --name damage_yolov5
+Running Inference
+bash
+Copy
+Edit
+python yolov5/detect.py \
+    --weights runs/train/damage_yolov5/weights/best.pt \
+    --source examples/earthquake_area.jpg \
+    --conf 0.25 --output runs/inference/
+Results <p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Model detecting damaged buildings in a real aerial image (blue boxes).</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing undamaged (teal) vs. damaged (blue) structures.</em> </p> 
 
+Challenges and Learnings
+Data Scarcity: Only one freely available dataset necessitated synthetic augmentation.
 
-Above: Example of a synthetic training mosaic (“Patchwork” image). This 1024×1024 composite is made by pasting multiple building images onto a blank background. Each sub-image of a building is outlined and labeled — green for “undamaged” buildings and red for “damaged” buildings. By creating 2,500 images like this with varying content and layout, the model was taught to detect and classify buildings in a larger scene. 
+Overfitting: Patchwork 1.0 highlighted the need for varied training samples.
 
-Above: The YOLOv5 detection model applied on a post-earthquake aerial image. Each blue bounding box denotes a detected building, and the label (e.g., “damaged 0.17”) indicates the model’s prediction that the building is damaged, along with a confidence score (here 0.17 means 17% confidence). In this example, the model has identified multiple structures in a disaster-struck area and marked those it believes are damaged. This demonstrates how the AI can scan a complex scene and pinpoint damaged buildings automatically. (The repository may contain additional images and results in the Test_Results folder, showcasing more examples of the model’s performance.)
+Compute Time: Training on an RTX 2070 took ~5 hours, underscoring efficient experimentation.
+
+Skill Growth: Gained hands-on experience in transfer learning, data annotation, and state-of-the-art object detection.
+
+Conclusion
+This project demonstrates how synthetic data generation and modern CNN architectures can overcome data limitations in disaster response. By evolving from classification to detection, the system now automatically identifies and classifies building damage in overhead imagery—providing a valuable tool for rapid post-earthquake assessment.
