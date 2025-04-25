@@ -20,7 +20,9 @@ Stage 2: Object Detection with YOLOv5
 To detect and classify multiple buildings within aerial scenes, we adopted YOLOv5 for its speed and accuracy.
 
 Patchwork 1.0 (Synthetic Data Generation)
-Cropped building images from the classification dataset and pasted them onto various background scenes to create composite images.
+“Combined ten random building images to create a synthetic satellite image
+
+<p align="center"> <img src="Results/mosaic_67.jpg" alt="Synthetic Training Image" width="600"/> <br/> <em>Figure 1: Example synthetic training image from Patchwork 1.0.</em> </p>
 
 Limited diversity (only ~10 unique crops) led to overfitting and poor generalization.
 
