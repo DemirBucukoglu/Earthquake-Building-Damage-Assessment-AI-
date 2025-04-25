@@ -1,7 +1,7 @@
-🏢 Building Damage Assessment AI
+## **Building Damage Assessment AI**
 
 
-Project Overview
+#  *Project Overview*
 Author: Demir Bucukoglu (Cohort: James Tribble)
 Objective: Automate post-earthquake building damage assessment using aerial imagery.
 Stages:
@@ -12,7 +12,7 @@ Stage 2: Object detection with YOLOv5 to locate multiple buildings within large 
 
 Use Case: Accelerate disaster response by pinpointing hard-hit areas from satellite/drone imagery.
 
-Methodology
+# *Methodology*
 Stage 1: Image Classification (ResNet-50)
 The project began by fine-tuning a pre-trained ResNet-50 CNN on a dataset of ~2,600 labeled building images (1,237 damaged, 1,498 undamaged) sourced from the Turkey Earthquake 2023 Kaggle dataset. Transfer learning allowed the model to achieve high accuracy quickly, confirming that damage can be recognized when images are cropped to single buildings. However, classification alone does not generalize to large scenes containing multiple structures.
 
@@ -31,7 +31,7 @@ Generated ~2,500 synthetic images with corresponding YOLO-format annotations.
 
 Re-trained YOLOv5 on this dataset, resulting in substantially improved detection and classification performance on real aerial imagery.
 
-Pipeline Summary
+# *Pipeline Summary*
 Detection: Run YOLOv5 on large images to locate buildings.
 
 Classification: Label each bounding box as “damaged” or “undamaged.”
