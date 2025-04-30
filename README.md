@@ -44,7 +44,7 @@ This end-to-end pipeline achieves automated building damage assessment in comple
 
 
 # *Results*
-<p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Actual image from an earthquake in Turkiye.</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing damaged (blue) structures.</em> </p> 
+<p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Actual image from an earthquake in Turkiye.</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing damaged (blue) structures.</em> </p> <p align="center"> <img src="Results/Results/just_results.png" alt="Training Performance Curves" width="600"/> <br/> Figure 5: Another actual image from a earthquake in Turkey
 
 # *Challenges and Learnings* 
 Data Scarcity: Only one freely available dataset necessitated synthetic augmentation.
