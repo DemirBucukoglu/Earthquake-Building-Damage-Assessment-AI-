@@ -78,7 +78,8 @@ bash
 Copy
 Edit
 
-Results <p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Actual image from an earthquake in Turkiye.</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing damaged (blue) structures.</em> </p> 
+# *Results*
+<p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Actual image from an earthquake in Turkiye.</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing damaged (blue) structures.</em> </p> 
 
 Challenges and Learnings
 Data Scarcity: Only one freely available dataset necessitated synthetic augmentation.
