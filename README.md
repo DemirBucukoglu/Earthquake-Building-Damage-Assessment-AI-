@@ -42,41 +42,6 @@ Classification: Label each bounding box as “damaged” or “undamaged.”
 
 This end-to-end pipeline achieves automated building damage assessment in complex scenes.
 
-Installation
-Clone the Repository
-
-bash
-Copy
-Edit
-git clone https://github.com/DemirBucukoglu/Earthquake-Building-Damage-Assessment-AI.git
-cd Earthquake-Building-Damage-Assessment-AI
-Set Up Python Environment
-
-bash
-Copy
-Edit
-conda create -n damage-ai-env python=3.8 -y
-conda activate damage-ai-env
-pip install -r requirements.txt
-YOLOv5 Dependencies
-
-bash
-Copy
-Edit
-cd yolov5
-pip install -r requirements.txt
-cd ..
-Prepare Data
-
-Classification: Place images in data/classification/damaged/ and data/classification/undamaged/.
-
-Object Detection: Use provided synthetic data in data/patchwork/ or generate your own via patchwork.py and patchwork2.0.py.
-
-Usage
-Training the ResNet-50 Classifier
-bash
-Copy
-Edit
 
 # *Results*
 <p align="center"> <img src="Results/resultgraph.png" alt="Training Performance Curves" width="600"/> <br/> <em>Figure 2: YOLOv5 training/validation metrics over 100 epochs (losses and mAP curves).</em> </p> <p align="center"> <img src="Results/good.png" alt="Detection Example 1" width="600"/> <br/> <em>Figure 3: Actual image from an earthquake in Turkiye.</em> </p> <p align="center"> <img src="Results/goodresult.png" alt="Detection Example 2" width="600"/> <br/> <em>Figure 4: Distinguishing damaged (blue) structures.</em> </p> 
