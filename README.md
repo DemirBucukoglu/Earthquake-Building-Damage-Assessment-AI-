@@ -55,5 +55,5 @@ Compute Time: Training on an RTX 2070 took ~5 hours, underscoring efficient expe
 
 Skill Growth: Gained hands-on experience in transfer learning, data annotation, and state-of-the-art object detection.
 
-Conclusion
+# *Conclusion*
 This project demonstrates how synthetic data generation and modern CNN architectures can overcome data limitations in disaster response. By evolving from classification to detection, the system now automatically identifies and classifies building damage in overhead imagery—providing a valuable tool for rapid post-earthquake assessment.
